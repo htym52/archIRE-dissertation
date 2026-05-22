@@ -1,0 +1,13 @@
+---
+const accessToken = Astro.cookies.get("sb-access-token");
+
+if (!accessToken) {
+    return Astro.redirect("/login");
+}
+---
+
+<h1>Dashboard</h1>
+
+<p>You are logged in.</p>
+
+<a href="/api/auth/signout"> Logout </a>
