@@ -1,0 +1,176 @@
+---
+import Layout from "../layout/layout.astro";
+---
+
+<Layout>
+    <main class="container">
+        <!-- PROFILE HEADER -->
+        <header class="profile-header">
+            <div class="studio-pfp">
+                <img src="spacelion.png" alt="Profile Image" />
+            </div>
+
+            <div class="studio-title">
+                <h1>Space Lion Studios</h1>
+                <p class="studio-location">📍 Dublin, Ireland</p>
+
+                <div class="social-row">
+                    <button class="btn-social">🌐 Website</button>
+                    <button class="btn-social">🐦 Social</button>
+                </div>
+            </div>
+        </header>
+
+        <!-- ABOUT -->
+        <section class="section">
+            <h2 class="section-title">About</h2>
+            <p class="about-text">
+                Space Lion Studios is a two-man studio based out of Ireland with
+                over 14 years experience in the industry. Axyz is our debut
+                title, scheduled for release in Q1 2025.
+            </p>
+        </section>
+
+        <!-- FEATURED MEDIA (FIXED CAROUSEL) -->
+        <section class="section">
+            <h2 class="section-title">Featured</h2>
+
+            <div class="featured-carousel">
+                <div class="game-grid">
+                    <article class="game-card">
+                        <div class="game-art">
+                            <img src="axyz.png" alt="" />
+                        </div>
+
+                        <div class="game-info">
+                            <h3>Axyz</h3>
+                        </div>
+                    </article>
+
+                    <!-- <article class="game-card">
+                        <div class="game-art">
+                            <img src="media/game2.jpg" alt="">
+                        </div>
+
+                        <div class="game-info">
+                            <h3>Game 2</h3>
+                        </div>
+                    </article> -->
+                </div>
+
+                <p class="media-caption">
+                    Gameplay footage and early development screenshots.
+                </p>
+
+                <div class="tag-row">
+                    <span class="tag">Indie</span>
+                    <span class="tag">Story Rich</span>
+                    <span class="tag">Multiplayer</span>
+                </div>
+
+                <div class="quick-info">
+                    <div><strong>Genre:</strong> Puzzle</div>
+                    <div><strong>Platform:</strong> PC</div>
+                    <div><strong>Status:</strong> Released</div>
+                    <div><strong>Release:</strong> 27th March 2025 </div>
+                </div>
+
+                <div class="featured-actions">
+                    <button class="btn-game-view">▶ Play Demo</button>
+                </div>
+            </div>
+
+            <!-- GAMES -->
+            <!-- <section class="section">
+            <h2 class="section-title">Games Showcase</h2>
+
+            <div class="game-grid">
+
+                <article class="game-card">
+                    <div class="game-art">
+                        <img src="media/game1.jpg" alt="">
+                    </div>
+
+                    <div class="game-info">
+                        <h3>Game Title</h3>
+                        <p>Short description of the game.</p>
+                        <button class="btn-game-view">View Game →</button>
+                    </div>
+                </article>
+
+                <article class="game-card">
+                    <div class="game-art">
+                        <img src="media/game2.jpg" alt="">
+                    </div>
+
+                    <div class="game-info">
+                        <h3>Game Title</h3>
+                        <p>Short description of the game.</p>
+                        <button class="btn-game-view">View Game →</button>
+                    </div>
+                </article>
+
+            </div>
+        </section> -->
+
+            <!-- MEDIA GALLERY -->
+            <section class="section">
+                <h2 class="section-title">Screenshots / Media</h2>
+
+                <div class="media-grid">
+                    <div class="media-item">
+                        <img src="blossom.gif" alt="" />
+                    </div>
+
+                    <div class="media-item">
+                        <img src="levels.gif" alt="" />
+                    </div>
+
+                    <div class="media-item">
+                        <img src="gravity_switch.gif" alt="" />
+                    </div>
+
+                    <div class="media-item">
+                        <img src="gif4.gif" alt="" />
+                    </div>
+                </div>
+            </section>
+
+            <!-- COMMENTS -->
+            <section class="feedback-box">
+                <div class="feedback-header">
+                    <h2 class="feedback-title">Comments & Feedback</h2>
+                    <span class="comment-count">2 Comments</span>
+                </div>
+
+                <div class="auth-prompt">
+                    Login to comment or give feedback.
+                </div>
+
+                <div class="comment">
+                    <div class="comment-avatar"></div>
+                    <div>
+                        <p class="comment-user">
+                            JohnDoe <span class="comment-date">3 days ago</span>
+                        </p>
+                        <p class="comment-text">
+                            Really love the art style of your latest project!
+                        </p>
+                    </div>
+                </div>
+
+                <div class="comment">
+                    <div class="comment-avatar"></div>
+                    <div>
+                        <p class="comment-user">
+                            Alice1334 <span class="comment-date"
+                                >1 week ago</span
+                            >
+                        </p>
+                        <p class="comment-text">Is there a demo available?</p>
+                    </div>
+                </div>
+            </section>
+        </section>
+    </main></Layout
+>
