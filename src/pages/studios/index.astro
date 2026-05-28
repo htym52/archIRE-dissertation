@@ -1,0 +1,119 @@
+---
+import Layout from "../../layout/layout.astro";
+import { supabase } from "../../lib/supabase";
+
+const query = Astro.url.searchParams.get("q") || "";
+
+let studios = [];
+
+
+if (query) {
+
+    const { data, error } = await supabase
+        .from("studios")
+        .select("*")
+        .ilike("name", `%${query}%`);
+
+    studios = data || [];
+
+    console.log(error);
+
+} else {
+
+    const { data, error } = await supabase
+        .from("studios")
+        .select("*");
+
+    studios = data || [];
+
+    console.log(error);
+}
+---
+
+<Layout>
+
+    <main class="container">
+
+        <!-- HEADER -->
+        <div class="header">
+
+            <h1>Irish Indie Studios</h1>
+
+            <p>
+                Discover independent game developers across Ireland.
+            </p>
+
+        </div>
+
+        <!-- SEARCH BAR -->
+        <form method="GET" class="search-form">
+
+            <input
+                type="text"
+                name="q"
+                placeholder="Search studios..."
+                value={query}
+            />
+
+            <button type="submit">
+                Search
+            </button>
+
+        </form>
+
+        <!-- STUDIO GRID -->
+        <div class="studio-grid">
+
+            {
+                studios?.map((studio) => (
+
+                    <a
+                        href={`/studios/${studio.slug}`}
+                        class="studio-link"
+                    >
+
+                        <article class="studio-card">
+
+                            <!-- LOGO -->
+                            <div class="studio-logo">
+
+                                <img
+                                    src={studio.logo_url}
+                                    alt={studio.name}
+                                />
+
+                            </div>
+
+                            <!-- INFO -->
+                            <div class="studio-info">
+
+                                <div class="studio-header">
+
+                                    <h2 class="studio-name">
+                                        {studio.name}
+                                    </h2>
+
+                                </div>
+
+                                <p class="studio-meta">
+                                    {studio.location}
+                                </p>
+
+                                <p class="studio-desc">
+                                    {studio.description}
+                                </p>
+
+                            </div>
+
+                        </article>
+
+                    </a>
+
+                ))
+            }
+
+        </div>
+
+    </main>
+
+</Layout>

@@ -1,0 +1,240 @@
+---
+export const prerender = false;
+
+import Layout from "../../layout/layout.astro";
+import { supabase } from "../../lib/supabase";
+
+const slug = Astro.params.slug;
+
+/* =========================
+   GET STUDIO
+========================= */
+
+const { data: studio } = await supabase
+    .from("studios")
+    .select("*")
+    .eq("slug", slug)
+    .single();
+
+/* =========================
+   GET GAMES FOR THIS STUDIO
+========================= */
+
+const { data: games } = await supabase
+    .from("games")
+    .select("*")
+    .eq("studio_id", studio.id);
+
+/* =========================
+   GET COMMENTS
+========================= */
+
+const { data: comments } = await supabase
+    .from("comments")
+    .select("*")
+    .eq("studio_id", studio.id)
+    .order("created_at", { ascending: false });
+---
+
+<Layout>
+
+    <main class="container">
+
+        <!-- PROFILE HEADER -->
+        <header class="profile-header">
+
+            <div class="studio-pfp">
+                <img src={studio.logo_url} alt={studio.name} />
+            </div>
+
+            <div class="studio-title">
+
+                <h1>{studio.name}</h1>
+
+                <p class="studio-location">
+                    📍 {studio.location}
+                </p>
+
+                <div class="social-row">
+                    <button class="btn-social">
+                        🌐 Website
+                    </button>
+
+                    <button class="btn-social">
+                        🐦 Social
+                    </button>
+                </div>
+
+            </div>
+
+        </header>
+
+        <!-- ABOUT -->
+        <section class="section">
+
+            <h2 class="section-title">
+                About
+            </h2>
+
+            <p class="about-text">
+                {studio.description}
+            </p>
+
+        </section>
+
+        <!-- FEATURED GAMES -->
+        <section class="section">
+
+            <h2 class="section-title">
+                Featured Games
+            </h2>
+
+            <div class="featured-carousel">
+
+                <div class="game-grid">
+
+                    {
+                        games?.map((game) => (
+
+                            <article class="game-card">
+
+                                <div class="game-art">
+
+                                    <img src={game.images_url} alt={game.title} />
+
+                                </div>
+
+                                <div class="game-info">
+
+                                    <h3>
+                                        {game.title}
+                                    </h3>
+
+                                    <p class="studio-desc">
+                                        {game.description}
+                                    </p>
+
+                                    <!-- GENRES -->
+                                    <div class="tag-row">
+
+                                        {
+                                            game.genre?.map((tag) => (
+
+                                                <span class="tag">
+                                                    {tag}
+                                                </span>
+
+                                            ))
+                                        }
+
+                                    </div>
+
+                                    <!-- GAME INFO -->
+                                    <div class="quick-info">
+
+                                        <div>
+                                            <strong>Platform:</strong>
+                                            {" "}
+                                            {game.platform}
+                                        </div>
+
+                                        <div>
+                                            <strong>Status:</strong>
+                                            {" "}
+                                            {game.status}
+                                        </div>
+
+                                        <div>
+                                            <strong>Release:</strong>
+                                            {" "}
+                                            {game.release_year}
+                                        </div>
+
+                                    </div>
+
+                                    <div class="featured-actions">
+
+                                        <button class="btn-game-view">
+                                            ▶ View Game
+                                        </button>
+
+                                    </div>
+
+                                </div>
+
+                            </article>
+
+                        ))
+                    }
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- SCREENSHOTS -->
+        <section class="section">
+            <h2 class="section-title"> Screenshots/Media </h2>
+                <div class="media-grid">
+                     {
+                         games?.map((game) => (
+                            game.media_s?.map((image) => (
+                                <div class="media-item">
+                                    <img src={image} alt={game.title} />
+                                </div>
+                            ))
+                        ))
+                    }
+                </div>
+        </section>
+
+        <!-- COMMENTS -->
+        <section class="feedback-box">
+            <h2 class="feedback-title">
+                Comments
+            </h2>
+
+            <form action="/api/comments/create"  method="POST" >
+
+                <input type="hidden" name="studio_id"  value={studio.id} />
+                <input type="hidden" name="slug" value={studio.slug} />
+
+                <textarea  name="content" required placeholder="Write a comment..." >
+                </textarea>
+
+                <button type="submit"> Post Comment </button>
+
+            </form>
+
+            <div class="comments-list">
+
+                {
+                    comments?.map((comment) => (
+
+                        <div class="comment">
+
+                            <div>
+
+                                <p class="comment-user">
+                                    {comment.user_id}
+                                </p>
+
+                                <p class="comment-text">
+                                    {comment.content}
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    ))
+                }
+
+            </div>
+
+        </section>
+
+    </main>
+
+</Layout>

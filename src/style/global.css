@@ -493,14 +493,16 @@ nav {
 }
 
 /* Card */
+
 .studio-card {
-  background-color: #f0f9d8;
-  border: 1px solid #333;
-  border-radius: 8px;
+  background-color: #0d1d18;
+  border: 1px solid #17986241;
+  border-radius: 18px;
   padding: 1.5rem;
   display: flex;
   gap: 1.5rem;
-  transition: all 0.2s ease;
+  transition: 0.3s ease;
+  cursor: pointer;
 }
 
 .studio-card:hover {
@@ -1776,4 +1778,34 @@ nav {
     .login-container h1 {
         font-size: 2rem;
     }
+}
+
+.welcome-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 2rem;
+    padding: 1rem 1.5rem;
+
+    background: #111;
+    border: 1px solid #222;
+    border-radius: 12px;
+}
+
+.welcome-row h1 {
+    font-size: 1.5rem;
+    color: #fff;
+    margin: 0;
+}
+
+.welcome-row button {
+    background: #ff4d4d;
+    color: #fff;
+    border: none;
+    padding: 0.6rem 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+
+    font-weight: 600;
+    transition: 0.2s ease;
 }

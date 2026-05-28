@@ -1,8 +1,17 @@
 ---
+export const prerender = false;
 import Layout from "../layout/layout.astro";
+import "../style/global.css";
+
+const accessToken = Astro.cookies.get("sb-access-token");
+const refreshToken = Astro.cookies.get("sb-refresh-token");
+if (accessToken && refreshToken) {
+    return Astro.redirect("/dashboard");
+}
 ---
 
 <Layout>
+
     <section class="login-container">
         <form method="POST" action="/api/auth/signin">
             <h1>Login</h1>
@@ -24,4 +33,5 @@ import Layout from "../layout/layout.astro";
             </p>
         </form>
     </section>
+
 </Layout>

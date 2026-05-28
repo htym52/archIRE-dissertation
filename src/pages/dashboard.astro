@@ -1,4 +1,8 @@
 ---
+export const prerender = false;
+import Layout from "../layout/layout.astro";
+import "../style/global.css";
+
 const accessToken = Astro.cookies.get("sb-access-token");
 
 if (!accessToken) {
@@ -6,8 +10,14 @@ if (!accessToken) {
 }
 ---
 
-<h1>Dashboard</h1>
+<Layout>
+    <div class="welcome-row">
+        <h1>Hi, Welcome.</h1>
 
-<p>You are logged in.</p>
+        <form action="/api/auth/signout" method="POST">
+            <button type="submit">Logout</button>
+        </form>
+    </div>
+</Layout>
 
-<a href="/api/auth/signout"> Logout </a>
+<!-- you need to take a screenshot of the dashboard page. -->
