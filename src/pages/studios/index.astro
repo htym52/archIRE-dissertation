@@ -12,7 +12,8 @@ if (query) {
     const { data, error } = await supabase
         .from("studios")
         .select("*")
-        .ilike("name", `%${query}%`);
+        .ilike("name", `%${query}%`)
+        .order("name", { ascending: true });
 
     studios = data || [];
 
@@ -22,7 +23,8 @@ if (query) {
 
     const { data, error } = await supabase
         .from("studios")
-        .select("*");
+        .select("*")
+        .order("name", { ascending: true });
 
     studios = data || [];
 
@@ -100,7 +102,7 @@ if (query) {
                                 </p>
 
                                 <p class="studio-desc">
-                                    {studio.description}
+                                    {studio.description_short}
                                 </p>
 
                             </div>

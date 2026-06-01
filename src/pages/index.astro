@@ -3,105 +3,116 @@ import Layout from "../layout/layout.astro";
 ---
 
 <Layout>
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <!-- <video autoplay muted loop playsinline class="background-video">
-            <source src="https://videos.pexels.com/video-files/7914783/7914783-hd_1920_1080_30fps.mp4"
-                type="video/mp4" />
-        </video>
+    <main class="landing-page">
+        <!-- HERO -->
+        <section class="hero">
+            <div class="hero-overlay"></div>
 
-        <div class="overlay"></div> -->
+            <div class="hero-content">
+                <!-- <p class="tag">Piecing Together Ireland’s Indie Flock</p> -->
 
-        <div class="hero-content">
-            <h1>Welcome to <br /> archIRE</h1>
-            <p>Explore lorem ipsum.</p>
+                <h1>Welcome to <br /> archIRE</h1>
+                <!-- <div class="hero-content">
             <a href="/profilemain" class="hero-btn">Search</a>
-        </div>
-    </section>
+        </div> -->
 
-    <!-- SCROLL EXPAND VIDEO -->
+                <p class="hero-text">
+                    Piecing Together Ireland's Indie Flock <br> Explore handcrafted
+                    games, talented studios, and rising indie developers from
+                    across Ireland.
+                </p>
 
-    <section class="scroll-section">
-        <div class="video-circle">
-            <video autoplay muted loop playsinline>
-                <source
-                    src="https://videos.pexels.com/video-files/7914783/7914783-hd_1920_1080_30fps.mp4"
-                    type="video/mp4"
-                />
-            </video>
-        </div>
-    </section>
+                <div class="hero-buttons">
+                    <!-- <a href="/profilemain" class="btn-primary"> Explore Games </a> -->
 
-    <!-- Video Carousel Section -->
-    <section class="videos-section" id="videos">
-        <div class="section-header">
-            <h2>Featured Videos</h2>
-            <p>lorem ipsum.</p>
-        </div>
-
-        <div class="video-carousel">
-            <div class="video-card">
-                <iframe
-                    src="https://www.youtube.com/embed/ysz5S6PUM-U"
-                    title="YouTube video 1"
-                    allowfullscreen
-                >
-                </iframe>
-                <div class="video-info">
-                    <h3>Video One</h3>
-                    <p>lorem ipsum</p>
+                    <a href="/studios" class="btn-secondary">
+                        Discover Studios
+                    </a>
                 </div>
             </div>
 
-            <div class="video-card">
-                <iframe
-                    src="https:/ /www.youtube.com/embed/tgbNymZ7vqY"
-                    title="YouTube video 2"
-                    allowfullscreen
-                >
-                </iframe>
-                <div class="video-info">
-                    <h3>Video Two</h3>
+            <div class="floating-card card-1">
+                <span>🎮 Narrative Adventures</span>
+            </div>
+
+            <div class="floating-card card-2">
+                <span>🕹 Pixel Art Worlds</span>
+            </div>
+
+            <div class="floating-card card-3">
+                <span>✨ Irish Creativity</span>
+            </div>
+        </section>
+
+        <!-- FEATURED -->
+        <section class="featured-section container">
+            <div class="section-header">
+                <h2>Featured Indie Games</h2>
+
+                <a href="/games"> View All → </a>
+            </div>
+
+            <div class="game-grid">
+                <article class="game-card">
+                    <img src="/games/sample1.jpg" alt="Game" />
+
+                    <div class="game-info">
+                        <h3>Echoes of Tara</h3>
+                        <p>Atmospheric puzzle adventure.</p>
+                    </div>
+                </article>
+
+                <article class="game-card">
+                    <img src="/games/sample2.jpg" alt="Game" />
+
+                    <div class="game-info">
+                        <h3>Pixel Drift</h3>
+                        <p>Retro inspired arcade racer.</p>
+                    </div>
+                </article>
+
+                <article class="game-card">
+                    <img src="/games/sample3.jpg" alt="Game" />
+
+                    <div class="game-info">
+                        <h3>Fable Isles</h3>
+                        <p>Fantasy exploration RPG.</p>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- STUDIOS -->
+        <section class="studio-section">
+            <div class="container studio-wrapper">
+                <div class="studio-text">
+                    <p class="mini-title">IRISH STUDIOS</p>
+
+                    <h2>Built By Passionate Creators</h2>
+
                     <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit
+                        From Dublin to Cork, discover studios creating unique
+                        experiences inspired by Irish creativity and
+                        storytelling.
                     </p>
+
+                    <a href="/studios" class="btn-primary"> Browse Studios </a>
+                </div>
+
+                <div class="studio-showcase">
+                    <div class="studio-box large">
+                        <span>Dreamfeel</span>
+                    </div>
+
+                    <div class="studio-box">
+                        <span>Gambrinous</span>
+                    </div>
+
+                    <div class="studio-box">
+                        <span>Black Shamrock</span>
+                    </div>
                 </div>
             </div>
-
-            <div class="video-card">
-                <iframe
-                    src="https:// www.youtube.com/embed/dQw4w9WgXcQ"
-                    title="YouTube video 3"
-                    allowfullscreen
-                >
-                </iframe>
-                <div class="video-info">
-                    <h3>Video Three</h3>
-                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing</p>
-                </div>
-            </div>
-
-            <div class="video-card">
-                <iframe
-                    src="https:// www.youtube.com/embed/ScMzIvxBSi4"
-                    title="YouTube video 4"
-                    allowfullscreen
-                >
-                </iframe>
-                <div class="video-info">
-                    <h3>Video Four</h3>
-                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- <section class="about-section" id="about">
-        <h2>About</h2>
-        <p>
-            This is a simple landing page layout with a fullscreen video hero
-            and a scrollable YouTube video carousel below.
-        </p>
-    </section> -->
-
+        </section>
+    </main>
 </Layout>

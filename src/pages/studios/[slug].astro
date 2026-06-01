@@ -51,18 +51,18 @@ const { data: comments } = await supabase
 
                 <h1>{studio.name}</h1>
 
-                <p class="studio-location">
+                <!-- <p class="studio-location">
                     📍 {studio.location}
-                </p>
+                </p> -->
 
                 <div class="social-row">
-                    <button class="btn-social">
-                        🌐 Website
-                    </button>
-
-                    <button class="btn-social">
-                        🐦 Social
-                    </button>
+                        <a class="btn-social" href={studio.website}>
+                            🌐 Website
+                        </a>
+                        
+                        <a class="btn-social" href={studio.socials}>
+                            🐦 Social
+                        </a>
                 </div>
 
             </div>
@@ -77,113 +77,93 @@ const { data: comments } = await supabase
             </h2>
 
             <p class="about-text">
-                {studio.description}
+                {studio.description_long}
             </p>
 
         </section>
 
         <!-- FEATURED GAMES -->
-        <section class="section">
+        <section class="section featured-games">
 
-            <h2 class="section-title">
-                Featured Games
-            </h2>
+  <h2 class="section-title">
+    Featured Games
+  </h2>
 
-            <div class="featured-carousel">
+  <div class="featured-carousel">
 
-                <div class="game-grid">
+    <div class="game-grid">
 
-                    {
-                        games?.map((game) => (
+      {
+        games?.map((game) => (
 
-                            <article class="game-card">
+          <article class="game-card">
 
-                                <div class="game-art">
+            <!-- IMAGE -->
+            <div class="game-media">
+              <img src={game.images_url} alt={game.title} />
+            </div>
 
-                                    <img src={game.images_url} alt={game.title} />
+            <!-- CONTENT -->
+            <div class="game-content">
 
-                                </div>
+              <!-- HEADER -->
+              <div class="game-header">
+                <h3 class="game-title">{game.title}</h3>
 
-                                <div class="game-info">
+                <span class="game-status">
+                  {game.status}
+                </span>
+              </div>
 
-                                    <h3>
-                                        {game.title}
-                                    </h3>
+              <!-- DESCRIPTION -->
+              <p class="game-desc">
+                {game.description}
+              </p>
 
-                                    <p class="studio-desc">
-                                        {game.description}
-                                    </p>
+              <!-- TAGS -->
+              <div class="tag-row">
+                {
+                  game.genre?.map((tag) => (
+                    <span class="tag">{tag}</span>
+                  ))
+                }
+              </div>
 
-                                    <!-- GENRES -->
-                                    <div class="tag-row">
+              <!-- META INFO -->
+              <div class="game-meta">
+                <span><strong>Platform:</strong> {game.platform}</span>
+                <span><strong>Release:</strong> {game.release_year}</span>
+             </div>
 
-                                        {
-                                            game.genre?.map((tag) => (
-
-                                                <span class="tag">
-                                                    {tag}
-                                                </span>
-
-                                            ))
-                                        }
-
-                                    </div>
-
-                                    <!-- GAME INFO -->
-                                    <div class="quick-info">
-
-                                        <div>
-                                            <strong>Platform:</strong>
-                                            {" "}
-                                            {game.platform}
-                                        </div>
-
-                                        <div>
-                                            <strong>Status:</strong>
-                                            {" "}
-                                            {game.status}
-                                        </div>
-
-                                        <div>
-                                            <strong>Release:</strong>
-                                            {" "}
-                                            {game.release_year}
-                                        </div>
-
-                                    </div>
-
-                                    <div class="featured-actions">
-
-                                        <button class="btn-game-view">
-                                            ▶ View Game
-                                        </button>
-
-                                    </div>
-
-                                </div>
-
-                            </article>
-
-                        ))
-                    }
-
-                </div>
+              <!-- ACTION -->
+              <div class="game-actions">
+                <a href={game.link} target="_blank" class="btn-game-view">
+                  ▶ View Game
+                </a>
+              </div>
 
             </div>
 
-        </section>
+          </article>
+
+        ))
+      }
+
+    </div>
+
+  </div>
+
+</section>
 
         <!-- SCREENSHOTS -->
         <section class="section">
             <h2 class="section-title"> Screenshots/Media </h2>
                 <div class="media-grid">
-                     {
-                         games?.map((game) => (
-                            game.media_s?.map((image) => (
-                                <div class="media-item">
-                                    <img src={image} alt={game.title} />
-                                </div>
-                            ))
+                    {
+                        studio.media_s?.map((image) => (
+                            <div class="media-item">
+                                <img src={image} alt={studio.name} />
+                            </div>
                         ))
                     }
                 </div>
@@ -200,34 +180,32 @@ const { data: comments } = await supabase
                 <input type="hidden" name="studio_id"  value={studio.id} />
                 <input type="hidden" name="slug" value={studio.slug} />
 
-                <textarea  name="content" required placeholder="Write a comment..." >
-                </textarea>
-
-                <button type="submit"> Post Comment </button>
-
+                <div class="comment-input-wrapper">
+                    <textarea name="content" required placeholder="Write a comment..." class="comment-input" ></textarea>
+                    <button type="submit" class="send-btn" aria-label="Send comment">
+                        ➤
+                    </button>
+                </div>
             </form>
-
+           
             <div class="comments-list">
 
                 {
                     comments?.map((comment) => (
+                        <div class="comment-line">
 
-                        <div class="comment">
-
-                            <div>
-
-                                <p class="comment-user">
-                                    {comment.user_id}
-                                </p>
-
-                                <p class="comment-text">
-                                    {comment.content}
-                                </p>
-
+                            <div class="comment-header">
+                             <span class="comment-id">
+                                {comment.user_id}
+                             </span>
                             </div>
-
+                             
+                             <div class="comment-text">
+                                {comment.content}
+                            </div>
+                            
                         </div>
-
+                        
                     ))
                 }
 
