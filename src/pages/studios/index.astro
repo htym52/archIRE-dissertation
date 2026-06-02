@@ -48,20 +48,24 @@ if (query) {
         </div>
 
         <!-- SEARCH BAR -->
-        <form method="GET" class="search-form">
+       <form method="GET" class="search-form">
 
-            <input
-                type="text"
-                name="q"
-                placeholder="Search studios..."
-                value={query}
-            />
+  <input
+    type="text"
+    name="q"
+    placeholder="Search studios..."
+    value={query}
+    class="search-input"
+  />
 
-            <button type="submit">
-                Search
-            </button>
+  <button
+    type="submit"
+    class="search-button"
+  >
+    Search
+  </button>
 
-        </form>
+</form>
 
         <!-- STUDIO GRID -->
         <div class="studio-grid">

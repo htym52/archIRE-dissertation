@@ -6,9 +6,7 @@ import { supabase } from "../../lib/supabase";
 
 const slug = Astro.params.slug;
 
-/* =========================
-   GET STUDIO
-========================= */
+
 
 const { data: studio } = await supabase
     .from("studios")
@@ -16,18 +14,14 @@ const { data: studio } = await supabase
     .eq("slug", slug)
     .single();
 
-/* =========================
-   GET GAMES FOR THIS STUDIO
-========================= */
+
 
 const { data: games } = await supabase
     .from("games")
     .select("*")
     .eq("studio_id", studio.id);
 
-/* =========================
-   GET COMMENTS
-========================= */
+
 
 const { data: comments } = await supabase
     .from("comments")
@@ -51,17 +45,15 @@ const { data: comments } = await supabase
 
                 <h1>{studio.name}</h1>
 
-                <!-- <p class="studio-location">
-                    📍 {studio.location}
-                </p> -->
+ 
 
                 <div class="social-row">
                         <a class="btn-social" href={studio.website}>
-                            🌐 Website
+                             Website
                         </a>
                         
                         <a class="btn-social" href={studio.socials}>
-                            🐦 Social
+                            Social
                         </a>
                 </div>
 
